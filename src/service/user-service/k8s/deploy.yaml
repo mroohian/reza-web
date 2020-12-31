@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service-deployment
+  labels:
+    app: user-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+        - name: user-service
+          image: rezaregistry.azurecr.io/user-service:1.0.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: NODE_CONFIG_ENV
+              value: production
+            - name: NODE_CONFIG
+              value: |
+                {
+                  "dbConfig": {
+                    "connectionString": "mongodb://mongo-0.mongo,mongo-1.mongo,mongo-2.mongo/reza-web"
+                  },
+                  "elasticsearch": {
+                    "connectionUrl": "http://elasticsearch-0.elasticsearch:9200"
+                  }
+                }
+          livenessProbe:
+            httpGet:
+              path: /api/v1/healthcheck
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /api/v1/healthcheck
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: '1'
+            requests:
+              memory: 256Mi
+              cpu: '0.2'

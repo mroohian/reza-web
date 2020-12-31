@@ -1,0 +1,8 @@
+{
+  "dbConfig": {
+    "connectionString": "mongodb://mongo/reza-web"
+  },
+  "elasticsearch": {
+    "connectionUrl": "http://elasticsearch:9200"
+  }
+}

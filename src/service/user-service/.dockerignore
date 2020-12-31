@@ -1,0 +1,11 @@
+.git
+.vscode
+node_modules
+.dockerignore
+.gitignore
+Dockerfile
+k8s
+dest
+config/local*
+nodemon.json
+README.md

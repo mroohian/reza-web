@@ -1,0 +1,31 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../infrastructure"
+    },
+    {
+      "name": "lib: api-mongoose",
+      "path": "lib/api-mongoose"
+    },
+    {
+      "name": "lib: api-base",
+      "path": "lib/api-base"
+    },
+    {
+      "name": "lib: api-elasticsearch-logger",
+      "path": "lib/api-elasticsearch-logger"
+    },
+    {
+      "name": "lib: eslint-config-rw",
+      "path": "lib/eslint-config-rw"
+    },
+    {
+      "name": "service: user-service",
+      "path": "service/user-service"
+    }
+  ],
+  "settings": {}
+}

@@ -1,0 +1,46 @@
+{
+  "name": "@rw/api-mongoose",
+  "version": "1.0.0",
+  "author": "Reza Roohian <m.roohian87@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mroohian/k8s.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mroohian/k8s/issues"
+  },
+  "homepage": "https://github.com/mroohian/k8s#readme",
+  "scripts": {
+    "clean": "rimraf lib",
+    "lint:fix": "tsc --noEmit && eslint src/**/*.{js,ts} --quiet --fix",
+    "lint": "tsc --noEmit && eslint src/**/*.{js,ts}",
+    "build": "npm run clean && npm run lint && tsc --outDir lib",
+    "build:watch": "npm run clean && npm run lint && tsc --watch --outDir lib",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "debug": "^4.3.1",
+    "inversify": "^5.0.5",
+    "mongoose": "^5.11.9"
+  },
+  "devDependencies": {
+    "@rw/eslint-config-rw": "^1.0.0",
+    "@types/debug": "^4.1.5",
+    "@types/node": "^14.14.16",
+    "eslint": "^7.16.0",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "name": "@rw/api-base",
+  "version": "1.0.0",
+  "author": "Reza Roohian <m.roohian87@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mroohian/k8s.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mroohian/k8s/issues"
+  },
+  "homepage": "https://github.com/mroohian/k8s#readme",
+  "bin": {
+    "docker-utils": "script/docker-utils.js"
+  },
+  "scripts": {
+    "clean": "rimraf lib",
+    "lint:fix": "tsc --noEmit && eslint src/**/*.{js,ts} --quiet --fix",
+    "lint": "tsc --noEmit && eslint src/**/*.{js,ts}",
+    "build": "npm run clean && npm run lint && tsc --outDir lib",
+    "build:watch": "npm run clean && npm run lint && tsc --watch --outDir lib",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@hapi/boom": "^9.1.1",
+    "@hapi/hapi": "^20.0.3",
+    "@hapi/inert": "^6.0.3",
+    "@hapi/vision": "^6.0.1",
+    "debug": "^4.3.1",
+    "hapi-swagger": "^14.0.0",
+    "inversify": "^5.0.5",
+    "joi": "^17.3.0",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@rw/eslint-config-rw": "^1.0.0",
+    "@types/debug": "^4.1.5",
+    "@types/hapi__hapi": "^20.0.3",
+    "@types/hapi__inert": "^5.2.2",
+    "@types/hapi__vision": "^5.5.2",
+    "@types/node": "^14.14.16",
+    "eslint": "^7.16.0",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}

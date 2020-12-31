@@ -1,0 +1,61 @@
+{
+  "name": "user-service",
+  "version": "1.0.0",
+  "description": "User service",
+  "author": "Reza Roohian <m.roohian87@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "config": {
+    "docker-registry": "rezaregistry.azurecr.io",
+    "port": 3000
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mroohian/k8s.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mroohian/k8s/issues"
+  },
+  "homepage": "https://github.com/mroohian/k8s#readme",
+  "scripts": {
+    "clean": "rimraf dest",
+    "lint:fix": "tsc --noEmit && eslint src/**/*.{js,ts} --quiet --fix",
+    "lint": "tsc --noEmit && eslint src/**/*.{js,ts}",
+    "build": "npm run clean && npm run lint && tsc --outDir dest",
+    "start": "node dest/",
+    "start:dev": "ts-node src/",
+    "start:dev:debug": "node --inspect=23000 -r ts-node/register src/",
+    "serve": "nodemon",
+    "serve:debug": "nodemon -x npm run start:dev:debug",
+    "docker:build": "docker-utils build --build-arg RW_NPM_REPO --build-arg RW_NPM_TOKEN .",
+    "docker:run": "docker-utils run",
+    "docker:exec": "docker-utils run sh",
+    "docker:push": "npm run docker:build && docker-utils push"
+  },
+  "dependencies": {
+    "@hapi/boom": "^9.1.1",
+    "@hapi/hapi": "^20.0.3",
+    "@rw/api-base": "^1.0.0",
+    "@rw/api-elasticsearch-logger": "^1.0.0",
+    "@rw/api-mongoose": "^1.0.0",
+    "config": "^3.3.3",
+    "debug": "^4.3.1",
+    "inversify": "^5.0.5",
+    "joi": "^17.3.0",
+    "mongoose": "^5.11.8",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@rw/eslint-config-rw": "^1.0.0",
+    "@types/config": "0.0.37",
+    "@types/debug": "^4.1.5",
+    "@types/hapi__hapi": "^20.0.3",
+    "@types/node": "^14.14.16",
+    "eslint": "^7.16.0",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}

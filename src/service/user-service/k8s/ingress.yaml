@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: user-service-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /api/v1$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  tls:
+  - hosts:
+    - reza.westeurope.cloudapp.azure.com
+    secretName: tls-secret
+  rules:
+  - host: reza.westeurope.cloudapp.azure.com
+    http:
+      paths:
+      - path: /api/user/v1(.*)
+        pathType: Prefix
+        backend:
+          serviceName: user-service-svc
+          servicePort: 3000

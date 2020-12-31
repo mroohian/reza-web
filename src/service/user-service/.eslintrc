@@ -1,0 +1,13 @@
+{
+  "extends": "@rw/eslint-config-rw",
+
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  }
+}

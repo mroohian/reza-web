@@ -1,0 +1,45 @@
+{
+  "name": "@rw/eslint-config-rw",
+  "version": "1.0.0",
+  "description": "RW eslint configuration",
+  "author": "Reza Roohian <m.roohian87@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "main": "index.js",
+  "files": [
+    "index.js",
+    ".prettierrc.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mroohian/k8s.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mroohian/k8s/issues"
+  },
+  "homepage": "https://github.com/mroohian/k8s#readme",
+  "peerDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-functional": "^3.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.0"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-functional": "^3.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "typescript": "^4.1.3"
+  }
+}

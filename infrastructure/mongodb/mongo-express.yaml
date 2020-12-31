@@ -1,0 +1,81 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: mongodb-express
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mongodb-express
+  template:
+    metadata:
+      labels:
+        app: mongodb-express
+    spec:
+      containers:
+        - name: mongo-express
+          image: mongo-express:latest
+          env:
+            - name: ME_CONFIG_SITE_BASEURL
+              value: /ui/mongodb-express
+            - name: ME_CONFIG_MONGODB_SERVER
+              value: mongo-0.mongo,mongo-1.mongo,mongo-2.mongo
+            - name: ME_CONFIG_MONGODB_PORT
+              value: "27017"
+            - name: ME_CONFIG_BASICAUTH_USERNAME
+              value: "admin"
+            - name: ME_CONFIG_BASICAUTH_PASSWORD
+              value: "[pass]"
+          ports:
+            - name: mongoxweb
+              containerPort: 8081
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: '1'
+            requests:
+              memory: 256Mi
+              cpu: '0.2'
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-express-svc
+  labels:
+    app: mongodb-express
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: mongoxweb
+      protocol: TCP
+  selector:
+    app: mongodb-express
+
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: mongodb-express-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  tls:
+    - hosts:
+        - reza.westeurope.cloudapp.azure.com
+      secretName: tls-secret
+  rules:
+    - host: reza.westeurope.cloudapp.azure.com
+      http:
+        paths:
+          - path: /ui/mongodb-express(/|$)(.*)
+            backend:
+              serviceName: mongodb-express-svc
+              servicePort: http
