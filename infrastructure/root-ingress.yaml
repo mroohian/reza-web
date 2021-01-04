@@ -4,7 +4,7 @@ metadata:
   name: root-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/app-root: /api/user/v1/
+    nginx.ingress.kubernetes.io/app-root: /api/user/v1
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
   tls:

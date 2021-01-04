@@ -35,6 +35,8 @@ spec:
                     "connectionUrl": "http://elasticsearch-0.elasticsearch:9200"
                   }
                 }
+            - name: DEBUG
+              value: '*,-elasticsearch'
           livenessProbe:
             httpGet:
               path: /api/v1/healthcheck
